@@ -34,7 +34,7 @@ def clone(src,dst):
             # XXX What about devices, sockets etc.?
         except (IOError, os.error) as why:
             errors.append((srcname, dstname, str(why)))
-        # catch the Error from the recursive copytree so that we can
+        # catch the Error from the recursive clone so that we can
         # continue with other files
         
     try:
@@ -52,4 +52,6 @@ if sys.argv[1:] is None or len(sys.argv[1:])>2:
 else:
 	source = sys.argv[1]
 	destination = sys.argv[2]
+    print 'copying...'
 	clone(source, destination)
+    print 'done'
