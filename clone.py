@@ -10,14 +10,23 @@ def clone(src,dst):
     # else:
     #     ignored_names = set()
 
-    #folders_to_copy = ['info','df']
+    folders_to_copy = ['cur','new','tmp']
 
     if not os.path.exists(dst):
     	os.makedirs(dst)
 
-    names = os.listdir(src)
+
+    #asd = [i for i in os.listdir(src) if i in folders_to_copy]
+    asd = [i for i in folders_to_copy if i in os.listdir(src)]
     
     errors = []
+    if len(asd) > 0:
+        names = asd
+        
+    else:
+        names = os.listdir(src)
+        
+
     for name in names:
         
         srcname = os.path.join(src, name)
@@ -47,7 +56,7 @@ def clone(src,dst):
     
 
 
-if sys.argv[1:] is None or len(sys.argv[1:])>2:
+if sys.argv[1:] is None or len(sys.argv[1:]) != 2:
 	print "Just put name of src and dst folder"
 else:
 	source = sys.argv[1]
